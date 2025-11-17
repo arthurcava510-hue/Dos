@@ -1,350 +1,452 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Arthur Rey Cava Portfolio</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Arthur Rey Cava Portfolio</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 
-  body {
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-    color: #d0ceff;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 80px 20px 40px;
-    overflow: hidden;
-    background: radial-gradient(circle at 20% 20%, #14002a, #050013 80%);
-  }
-
-  body::before {
-    content: "";
-    position: fixed;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: repeating-linear-gradient(
-      60deg,
-      rgba(0, 255, 255, 0.08) 0%,
-      rgba(255, 0, 255, 0.08) 10%,
-      transparent 10%,
-      transparent 20%
-    );
-    background-size: 300% 300%;
-    animation: moveGrid 25s linear infinite;
-    z-index: 0;
-  }
-
-  @keyframes moveGrid {
-    from { transform: translate(0, 0); }
-    to { transform: translate(-50%, -50%); }
-  }
-
-  .portfolio-container {
-    position: relative;
-    z-index: 2;
-    width: 980px;
-    background: rgba(255, 255, 255, 0.08);
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(25px) saturate(180%);
-    -webkit-backdrop-filter: blur(25px) saturate(180%);
-    border-radius: 30px;
-    padding: 40px 50px 50px 50px;
-    box-shadow: 0 0 40px rgba(183, 136, 255, 0.4);
-    display: flex;
-    margin-bottom: 15%;
-    gap: 60px;
-    align-items: flex-start;
-    user-select: text;
-    transition: transform 0.2s ease, box-shadow 0.3s ease;
-  }
-
-  .portfolio-container:hover {
-    box-shadow: 0 0 80px rgba(183, 136, 255, 0.6);
-  }
-
-  body:hover .portfolio-container {
-    transform-style: preserve-3d;
-  }
-
-  .site-title {
-    position: absolute;
-    top: 24px;
-    left: 50px;
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: #b7aeff;
-    text-shadow: 0 0 15px #9f94ffcc;
-    letter-spacing: 0.15em;
-    user-select: none;
-  }
-
-  nav.top-right-nav {
-    position: absolute;
-    top: 26px;
-    right: 50px;
-    display: flex;
-    gap: 32px;
-    font-weight: 600;
-    font-size: 1rem;
-    color: #b7aeff;
-    user-select: none;
-  }
-  nav.top-right-nav a {
-    color: #b7aeff;
-    text-decoration: none;
-    padding-bottom: 3px;
-    border-bottom: 2px solid transparent;
-    transition: border-color 0.3s ease, color 0.3s ease;
-  }
-  nav.top-right-nav a:hover,
-  nav.top-right-nav a.active {
-    color: #d0baff;
-    border-bottom-color: #b788ff;
-  }
-
-  .content-left {
-    flex: 1 1 600px;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .header { margin-bottom: 30px; }
-
-  .name {
-    font-size: 3.8rem;
-    font-weight: 900;
-    color: #e1dcff;
-    margin-bottom: auto;
-    text-shadow: 0 0 10px #9882ffcc, 0 0 28px #a594ffcc;
-    letter-spacing: -0.02em;
-  }
-  .title {
-    font-size: 1.9rem;
-    font-weight: 700;
-    color: #b7aeff;
-    margin-bottom: auto;
-    text-shadow: 0 0 20px #b3aaffcc;
-    font-family: monospace;
-    letter-spacing: 0.05em;
-  }
-
-  .tabs {
-    display: flex;
-    margin-top: 10px;
-    gap: 40px;
-  }
-
-  .tab {
-    background: transparent;
-    border: none;
-    font-weight: 700;
-    font-size: 1.15rem;
-    cursor: pointer;
-    color: #b7aeffcc;
-    position: relative;
-    padding-bottom: 6px;
-    transition: color 0.3s ease, border-bottom 0.3s ease;
-    letter-spacing: 0.03em;
-  }
-  .tab:hover { color: #d0baff; }
-  .tab.active {
-    color: #d0baff;
-    border-bottom: 2px solid #b788ff;
-  }
-
-  .content-slider {
-    overflow-y: auto;
-    overflow-x: hidden;
-    margin-top: 30px;
-    height: 160px;
-    scrollbar-width: thin;
-    scrollbar-color: #b7aeff #211a55;
-  }
-
-  .content-slider::-webkit-scrollbar { width: 8px; }
-  .content-slider::-webkit-scrollbar-track { background: #211a55; }
-  .content-slider::-webkit-scrollbar-thumb {
-    background: #b7aeff;
-    border-radius: 4px;
-  }
-  .content-slider::-webkit-scrollbar-thumb:hover { background: #d0baff; }
-
-  .slides {
-    display: flex;
-    width: 500%;
-    transition: transform 0.5s ease-in-out;
-  }
-  .slide {
-    width: 20%;
-    padding-right: 30px;
-    box-sizing: border-box;
-    line-height: 1.6;
-    color: #d3d1ffdd;
-    user-select: text;
-  }
-
-  .photo-container {
-    flex-shrink: 0;
-    width: 210px;
-    height: 120px;
-    border-radius: 50%;
-    box-shadow: 0 0 30px 6px #b788ffcc;
-    background: radial-gradient(circle at center, #b788ff 20%, transparent 80%);
-    margin-top: 18%;
-    margin-right: 10%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    filter: drop-shadow(0 0 10px #b788ffee);
-    transition: box-shadow 0.3s ease;
-    user-select: none;
-  }
-  .photo-container:hover {
-    box-shadow: 0 0 90px 34px #d2b7ffee;
-  }
-  .photo-container img {
-    width: 400px;
-    height: 250px;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 4px solid transparent;
-    background-color: #2a1a55;
-    filter: drop-shadow(0 0 6px #b788ffdd);
-    user-select: none;
-  }
-
-  /* ✨ Design-only Next/Previous buttons */
-  .page-buttons {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 30px;
-  }
-  .page-button {
-    background: rgba(183, 136, 255, 0.15);
-    color: #e1dcff;
-    border: 1px solid #b788ff;
-    border-radius: 12px;
-    padding: 10px 24px;
-    font-weight: 600;
-    font-size: 1rem;
-    letter-spacing: 0.5px;
-    user-select: none;
-    pointer-events: none; /* not clickable yet */
-    transition: background 0.3s ease, transform 0.2s ease;
-  }
-  .page-button:hover {
-    background: rgba(183, 136, 255, 0.3);
-    transform: scale(1.05);
-  }
-
-  @media (max-width: 1040px) {
-    .portfolio-container {
-      width: 100%;
-      flex-direction: column;
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      color: #d0ceff;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
       align-items: center;
-      padding: 30px 30px 40px 30px;
-      gap: 40px;
-      position: relative;
+      padding: 80px 20px 40px;
+      overflow: hidden;
+      background: radial-gradient(circle at 20% 20%, #14002a, #050013 80%);
     }
-  }
 
-  @media (max-width: 520px) {
-    .name { font-size: 2.2rem; }
-    .title { font-size: 1.2rem; }
-  }
-</style>
+    body::before {
+      content: "";
+      position: fixed;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: repeating-linear-gradient(
+        60deg,
+        rgba(0, 255, 255, 0.08) 0%,
+        rgba(255, 0, 255, 0.08) 10%,
+        transparent 10%,
+        transparent 20%
+      );
+      background-size: 300% 300%;
+      animation: moveGrid 25s linear infinite;
+      z-index: 0;
+    }
+
+    @keyframes moveGrid {
+      from { transform: translate(0, 0); }
+      to { transform: translate(-50%, -50%); }
+    }
+
+    .portfolio-container {
+      position: relative;
+      z-index: 2;
+      width: 980px;
+      background: rgba(255,255,255,0.08);
+      border: 2px solid rgba(255,255,255,0.2);
+      backdrop-filter: blur(25px) saturate(180%);
+      -webkit-backdrop-filter: blur(25px) saturate(180%);
+      border-radius: 30px;
+      padding: 40px 50px 50px 50px;
+      box-shadow: 0 0 40px rgba(183,136,255,0.4);
+      display: flex;
+      margin-bottom: 15%;
+      gap: 60px;
+      align-items: flex-start;
+      user-select: text;
+      transition: transform 0.2s ease, box-shadow 0.3s ease;
+    }
+
+    .portfolio-container:hover {
+      box-shadow: 0 0 80px rgba(183,136,255,0.6);
+    }
+
+    body:hover .portfolio-container {
+      transform-style: preserve-3d;
+    }
+
+    .site-title {
+      position: absolute;
+      top: 24px;
+      left: 50px;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #b7aeff;
+      text-shadow: 0 0 15px #9f94ffcc;
+      letter-spacing: 0.15em;
+      user-select: none;
+    }
+
+    nav.top-right-nav {
+      position: absolute;
+      top: 26px;
+      right: 50px;
+      display: flex;
+      gap: 32px;
+      font-weight: 600;
+      font-size: 1rem;
+      color: #b7aeff;
+      user-select: none;
+    }
+
+    nav.top-right-nav a {
+      color: #b7aeff;
+      text-decoration: none;
+      padding-bottom: 3px;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.3s ease, color 0.3s ease;
+      cursor: pointer;
+    }
+
+    nav.top-right-nav a:hover,
+    nav.top-right-nav a.active {
+      color: #d0baff;
+      border-bottom-color: #b788ff;
+    }
+
+    .content-left {
+      flex: 1 1 600px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .header { margin-bottom: 30px; }
+
+    .name {
+      font-size: 3.8rem;
+      font-weight: 900;
+      color: #e1dcff;
+      margin-bottom: auto;
+      text-shadow: 0 0 10px #9882ffcc, 0 0 28px #a594ffcc;
+      letter-spacing: -0.02em;
+    }
+
+    .title {
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: #b7aeff;
+      margin-bottom: auto;
+      text-shadow: 0 0 20px #b3aaffcc;
+      font-family: monospace;
+      letter-spacing: 0.05em;
+    }
+
+    .tabs {
+      display: flex;
+      margin-top: 10px;
+      gap: 40px;
+    }
+
+    .tab {
+      background: transparent;
+      border: none;
+      font-weight: 700;
+      font-size: 1.15rem;
+      cursor: pointer;
+      color: #b7aeffcc;
+      position: relative;
+      padding-bottom: 6px;
+      transition: color 0.3s ease, border-bottom 0.3s ease;
+      letter-spacing: 0.03em;
+    }
+
+    .tab:hover { color: #d0baff; }
+
+    .tab.active {
+      color: #d0baff;
+      border-bottom: 2px solid #b788ff;
+    }
+
+    .content-slider {
+      overflow-y: auto;
+      overflow-x: hidden;
+      margin-top: 30px;
+      height: 160px;
+      scrollbar-width: thin;
+      scrollbar-color: #b7aeff #211a55;
+    }
+
+    .content-slider::-webkit-scrollbar { width: 8px; }
+    .content-slider::-webkit-scrollbar-track { background: #211a55; }
+    .content-slider::-webkit-scrollbar-thumb { background: #b7aeff; border-radius: 4px; }
+    .content-slider::-webkit-scrollbar-thumb:hover { background: #d0baff; }
+
+    .slides {
+      display: flex;
+      width: 500%;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .slide {
+      width: 20%;
+      padding-right: 30px;
+      box-sizing: border-box;
+      line-height: 1.6;
+      color: #d3d1ffdd;
+      user-select: text;
+    }
+
+    .photo-container {
+      flex-shrink: 0;
+      width: 210px;
+      height: 120px;
+      border-radius: 50%;
+      box-shadow: 0 0 30px 6px #b788ffcc;
+      background: radial-gradient(circle at center, #b788ff 20%, transparent 80%);
+      margin-top: 18%;
+      margin-right: 10%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      filter: drop-shadow(0 0 10px #b788ffee);
+      transition: box-shadow 0.3s ease;
+      user-select: none;
+    }
+
+    .photo-container:hover {
+      box-shadow: 0 0 90px 34px #d2b7ffee;
+    }
+
+    .photo-container img {
+      width: 400px;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid transparent;
+      background-color: #2a1a55;
+      filter: drop-shadow(0 0 6px #b788ffdd);
+      user-select: none;
+    }
+
+    .page-buttons {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .page-button {
+      background: rgba(183,136,255,0.15);
+      color: #e1dcff;
+      border: 1px solid #b788ff;
+      border-radius: 12px;
+      padding: 10px 24px;
+      font-weight: 600;
+      font-size: 1rem;
+      letter-spacing: 0.5px;
+      user-select: none;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    .page-button:hover {
+      background: rgba(183,136,255,0.3);
+      transform: scale(1.05);
+    }
+
+    @media (max-width:1040px) {
+      .portfolio-container {
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        padding: 30px;
+        gap: 40px;
+        position: relative;
+      }
+    }
+
+    @media (max-width:520px) {
+      .name { font-size: 2.2rem; }
+      .title { font-size: 1.2rem; }
+    }
+
+  </style>
 </head>
+
 <body>
 
-<div class="portfolio-container" role="main" aria-label="Portfolio information about Arthur Rey Cava">
-  <div class="site-title">MyPortfolio</div>
-  <nav class="top-right-nav" aria-label="Primary site navigation">
-    <a href="#" class="active" aria-current="page">Home</a>
-    <a href="#">Achievements</a>
-    <a href="#">Documentation</a>
-  </nav>
-
-  <div class="content-left">
-    <header class="header">
-      <h1 class="name">Arthur Rey Cava</h1>
-      <p class="title">Bachelor of Science in Information Technology</p>
-    </header>
-
-    <nav class="tabs" role="tablist" aria-label="Portfolio sections">
-      <button class="tab active" role="tab" aria-selected="true" data-index="0">Early Life</button>
-      <button class="tab" role="tab" aria-selected="false" data-index="1">School</button>
-      <button class="tab" role="tab" aria-selected="false" data-index="2">Dreams</button>
-      <button class="tab" role="tab" aria-selected="false" data-index="3">Personal Life</button>
-      <button class="tab" role="tab" aria-selected="false" data-index="4">Goal</button>
+  <!-- PAGE 1 -->
+  <div class="portfolio-container" id="page1">
+    <div class="site-title">MyPortfolio</div>
+    <nav class="top-right-nav">
+      <a href="#" class="active" data-page="1">Home</a>
+      <a href="#" data-page="2">Achievements</a>
+      <a href="#" data-page="3">Documentation</a>
     </nav>
 
-    <div class="content-slider" tabindex="0" aria-live="polite" aria-atomic="true">
-      <div class="slides">
-        <p class="slide">
-          Hello I'm Arthur Rey Cava. Born in the province of Zambales, my passion for technology began at an early age when I spent much of my time in my brother’s computer shop. He also dreamed of becoming an IT professional, and being surrounded by computers, gadgets, and curious minds inspired me to follow the same path. From that point on, I knew I wanted to work with technology — to understand how it functions and how it can make life better.
-        </p>
-        <p class="slide">
-          During high school, I sharpened my skills in programming, joining competitions, and exploring various technologies that motivated me to deepen my knowledge and improve my skill.
-        </p>
-        <p class="slide">
-          My dream is to become a leading frontend developer who creates meaningful user experiences and innovative interfaces that inspire users and solve real problems.
-        </p>
-        <p class="slide">
-          Outside of coding, I love to travel, capture moments through photography, and learn about new cultures. Balance in life helps me stay creative and productive.
-        </p>
-        <p class="slide">
-          I believe that technology must be accessible to all, and great design should simplify complexity. My goal is to create with empathy and precision, putting users at the heart of development.
-        </p>
+    <div class="content-left">
+      <header class="header">
+        <h1 class="name">Arthur Rey Cava</h1>
+        <p class="title">Bachelor of Science in Information Technology</p>
+        <p class="title">About me</p>
+      </header>
+
+      <nav class="tabs">
+        <button class="tab active" data-index="0">Early Life</button>
+        <button class="tab" data-index="1">School</button>
+        <button class="tab" data-index="2">Dreams</button>
+        <button class="tab" data-index="3">Personal Life</button>
+        <button class="tab" data-index="4">Goal</button>
+      </nav>
+
+      <div class="content-slider">
+        <div class="slides">
+          <p class="slide">
+            Hello I'm Arthur Rey Cava. Born in the province of Zambales, my passion for technology began at an early age when I spent much of my time in my brother’s computer shop. He also dreamed of becoming an IT professional, and being surrounded by computers, gadgets, and curious minds inspired me to follow the same path. From that point on, I knew I wanted to work with technology — to understand how it functions and how it can make life better.
+          </p>
+          <p class="slide">
+            During high school, I sharpened my skills in programming, joining competitions, and exploring various technologies that motivated me to deepen my knowledge and improve my skill.
+          </p>
+          <p class="slide">
+            My dream is to become a leading frontend developer who creates meaningful user experiences and innovative interfaces that inspire users and solve real problems.
+          </p>
+          <p class="slide">
+            Outside of coding, I love to travel, capture moments through photography, and learn about new cultures. Balance in life helps me stay creative and productive.
+          </p>
+          <p class="slide">
+            I believe that technology must be accessible to all, and great design should simplify complexity. My goal is to create with empathy and precision, putting users at the heart of development.
+          </p>
+        </div>
       </div>
     </div>
 
-    <!-- ✨ Non-clickable Next & Previous buttons (design only) -->
-    <div class="page-buttons">
-      <div class="page-button">← Previous</div>
-      <div class="page-button">Next →</div>
+    <div class="photo-container">
+      <img src="Profile.jpg" alt="Arthur Rey Cava profile picture">
     </div>
 
+    <div class="page-buttons" style="position: absolute; bottom: 50px; right: 50px;">
+      <div class="page-button" id="next1">Next →</div>
+    </div>
   </div>
 
-  <div class="photo-container" aria-label="Profile picture">
-    <img src="Profile.jpg" alt="Arthur Rey Cava profile picture" />
-  </div>
-</div>
+  <!-- PAGE 2 -->
+  <div class="portfolio-container" id="page2" style="display:none;">
+    <div class="site-title">MyPortfolio</div>
+    <nav class="top-right-nav">
+      <a href="#" data-page="1">Home</a>
+      <a href="#" class="active" data-page="2">Achievements</a>
+      <a href="#" data-page="3">Documentation</a>
+    </nav>
 
-<script>
-  // Keep all your existing interactivity
-  const tabs = document.querySelectorAll('.tab');
-  const slidesContainer = document.querySelector('.slides');
-  const contentSlider = document.querySelector('.content-slider');
-  tabs.forEach((tab, i) => {
-    tab.addEventListener('click', () => {
-      tabs.forEach(t => {
-        t.classList.remove('active');
-        t.setAttribute('aria-selected', 'false');
+    <div class="content-left">
+      <header class="header">
+        <h1 class="name">Arthur Rey Cava</h1>
+        <p class="title">Educational Attainment</p>
+      </header>
+
+      <nav class="tabs">
+        <button class="tab active" data-index="0">Elementary (2014-2019)</button>
+        <button class="tab" data-index="1">High School (2019-2025)</button>
+        <button class="tab" data-index="2">College (2025-present)</button>
+        <button class="tab" data-index="3">Certifications</button>
+        <button class="tab" data-index="4">Trainings</button>
+      </nav>
+
+      <div class="content-slider">
+        <div class="slides">
+          <p class="slide">
+            I completed my elementary education at Maloma Community Elementary School, where I developed a strong and well-rounded foundation in core academic subjects such as mathematics, science, English, and social studies. During this period, I also cultivated a growing interest in science and technology, which was nurtured through various school projects and extracurricular activities. These early experiences provided me with essential skills in critical thinking, problem-solving, and collaboration, which later became the cornerstone of my academic journey and professional aspirations.
+          </p>
+          <p class="slide">
+            I graduated from Gov. Manuel D. Barretto National High School, where I not only honed my academic abilities but also discovered a deep passion for information technology. I excelled particularly in layout and design for the school newspaper, engaging in hands-on projects that sharpened my skills in desktop publishing, graphic design, and visual communication. Beyond academics, I actively participated in extracurricular activities such as journalism, where I developed strong research, writing, and editorial skills. My efforts were recognized through multiple awards in municipal and division-level collaborative desktop publishing competitions, which reinforced my enthusiasm for IT. In addition, I contributed as a film editor and videographer for Sineliksik, gaining valuable experience in multimedia production, video editing, and storytelling, which broadened my technical expertise and creative perspective.
+          </p>
+          <p class="slide">
+            I am currently a first-year college student at the University of the Cordilleras, pursuing a Bachelor of Science in Information Technology with a major in Network and Security. In my first year, I have built foundational knowledge in areas such as programming, web development, and database management, while consistently maintaining strong academic performance. I actively seek opportunities to apply my learning through practical engagements, including internships and collaborative projects, which have allowed me to strengthen my problem-solving abilities, technical skills, and adaptability in real-world IT scenarios.
+          </p>
+          <p class="slide">
+            Throughout my educational journey, I have earned several certifications and recognitions that reflect my dedication and skill development. These include certifications in Work Immersion, academic excellence awards, and recognition for Best Layout in division-level competitions. These achievements have not only enhanced my technical proficiency but also prepared me to take on professional roles in the technology industry with confidence and competence.
+          </p>
+          <p class="slide">
+            Looking ahead, I am committed to pursuing advanced studies and specialized training in cutting-edge fields such as artificial intelligence, cybersecurity, and network security. My ultimate goal is to contribute meaningfully to innovative technological solutions, leveraging my knowledge, skills, and creativity to address complex challenges and drive progress in the IT industry.
+          </p>
+        </div>
+      </div>
+
+      <div class="page-buttons" style="justify-content: space-between;">
+        <div class="page-button" id="prev2">← Previous</div>
+        <div class="page-button" id="next2">Next →</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE 3 (Blank) -->
+  <div class="portfolio-container" id="page3" style="display:none;">
+    <div class="site-title">MyPortfolio</div>
+    <nav class="top-right-nav">
+      <a href="#" data-page="1">Home</a>
+      <a href="#" data-page="2">Achievements</a>
+      <a href="#" class="active" data-page="3">Documentation</a>
+    </nav>
+    <div class="content-left">
+      <div class="page-buttons">
+        <div class="page-button" id="prev3">← Previous</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const pages = {
+      1: document.getElementById('page1'),
+      2: document.getElementById('page2'),
+      3: document.getElementById('page3')
+    };
+
+    // Top-right nav click
+    document.querySelectorAll('.top-right-nav a').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const pageNum = link.getAttribute('data-page');
+        Object.values(pages).forEach(p => p.style.display='none');
+        pages[pageNum].style.display='flex';
+        document.querySelectorAll('.top-right-nav a').forEach(a => a.classList.remove('active'));
+        document.querySelectorAll(`.top-right-nav a[data-page="${pageNum}"]`).forEach(a => a.classList.add('active'));
       });
-      tab.classList.add('active');
-      tab.setAttribute('aria-selected', 'true');
-      slidesContainer.style.transform = `translateX(-${i * 20}%)`;
-      contentSlider.scrollTop = 0;
     });
-  });
 
-  // 3D tilt
-  const container = document.querySelector('.portfolio-container');
-  document.addEventListener('mousemove', (e) => {
-    const x = (window.innerWidth / 2 - e.pageX) / 50;
-    const y = (window.innerHeight / 2 - e.pageY) / 50;
-    container.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
-  });
-  document.addEventListener('mouseleave', () => {
-    container.style.transform = `rotateY(0deg) rotateX(0deg)`;
-  });
-</script>
+    // Page buttons
+    document.getElementById('next1').addEventListener('click', () => {
+      pages[1].style.display='none'; pages[2].style.display='flex';
+    });
+
+    document.getElementById('prev2').addEventListener('click', () => {
+      pages[2].style.display='none'; pages[1].style.display='flex';
+    });
+
+    document.getElementById('next2').addEventListener('click', () => {
+      pages[2].style.display='none'; pages[3].style.display='flex';
+    });
+
+    document.getElementById('prev3').addEventListener('click', () => {
+      pages[3].style.display='none'; pages[2].style.display='flex';
+    });
+
+    // Tabs slide logic page1
+    const tabsPage1 = pages[1].querySelectorAll('.tab');
+    const slidesPage1 = pages[1].querySelector('.slides');
+    tabsPage1.forEach((tab,i) => {
+      tab.addEventListener('click', () => {
+        tabsPage1.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected','false'); });
+        tab.classList.add('active'); tab.setAttribute('aria-selected','true');
+        slidesPage1.style.transform = `translateX(-${i*20}%)`;
+      });
+    });
+
+    // Tabs slide logic page2
+    const tabsPage2 = pages[2].querySelectorAll('.tab');
+    const slidesPage2 = pages[2].querySelector('.slides');
+    tabsPage2.forEach((tab,i) => {
+      tab.addEventListener('click', () => {
+        tabsPage2.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected','false'); });
+        tab.classList.add('active'); tab.setAttribute('aria-selected','true');
+        slidesPage2.style.transform = `translateX(-${i*20}%)`;
+      });
+    });
+  </script>
 
 </body>
 </html>
