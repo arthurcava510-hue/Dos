@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html><!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -19,6 +19,7 @@
       overflow: hidden;
       background: radial-gradient(circle at 20% 20%, #14002a, #050013 80%);
     }
+    
 
     body::before {
       content: "";
@@ -155,7 +156,7 @@
       transition: color 0.3s ease, border-bottom 0.3s ease;
       letter-spacing: 0.03em;
     }
-
+    
     .tab:hover { color: #d0baff; }
 
     .tab.active {
@@ -164,38 +165,31 @@
     }
 
     .content-slider {
-      overflow-y: auto;
-      overflow-x: hidden;
-      margin-top: 30px;
-      height: 160px;
-      scrollbar-width: thin;
-      scrollbar-color: #b7aeff #211a55;
+      overflow-x: hidden; /* hides horizontal scrollbar */
+      overflow-y: auto;   /* keeps vertical scroll if needed */
+    }
+    
+
+    .slides {
+      display: flex;
+      width: 500%;
+      transition: transform 0.5s ease-in-out;
     }
 
-    .content-slider::-webkit-scrollbar { width: 8px; }
-    .content-slider::-webkit-scrollbar-track { background: #211a55; }
-    .content-slider::-webkit-scrollbar-thumb { background: #b7aeff; border-radius: 4px; }
-    .content-slider::-webkit-scrollbar-thumb:hover { background: #d0baff; }
-
     .slide {
-  width: 20%;
-  padding-right: 30px;
-  box-sizing: border-box;
-  line-height: 1.6;
-  color: #d3d1ffdd;
-  user-select: text;
+      width: 20%;
+      padding-right: 30px;
+      box-sizing: border-box;
+      line-height: 1.6;
+      color: #d3d1ffdd;
+      user-select: text;
+    }
+.slide {
+  display: flex;         /* makes children sit in a row */
+  gap: 30px;             /* space between picture and text */
+  align-items: flex-start; /* aligns text to top of image */
+}
 
-  display: flex;             /* make paragraph + image side-by-side */
-  align-items: center;
-  gap: 20px;
-}
-.slide img {
-  width: 120px;
-  height: auto;
-  border-radius: 10px;
-  flex-shrink: 0;
-}
-    
     .photo-container {
       flex-shrink: 0;
       width: 210px;
@@ -268,6 +262,55 @@
       .name { font-size: 2.2rem; }
       .title { font-size: 1.2rem; }
     }
+    #page2 .content-slider {
+  overflow-x: hidden;
+  overflow-y: auto;
+  max-height: 500px; /* Limit height to prevent vertical overflow */
+}
+
+#page2 .slides {
+  width: 500%;
+  overflow: hidden;
+}
+
+#page2 .slide {
+  width: 20%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+#page2 img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 0 20px #b788ffcc;
+}
+
+
+#page3 .content-slider {
+  overflow-x: hidden;   /* prevent sideways overflow */
+  overflow-y: auto;     /* allow vertical scroll */
+  max-height: 500px;    /* keeps everything inside container */
+}
+
+#page3 .slides {
+  width: 500%;          /* needed for sliding animation */
+  overflow: hidden;     /* prevent overflow */
+}
+
+#page3 .slide {
+  width: 20%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+#page3 img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 0 20px #b788ffcc;
+}
+
 
   </style>
 </head>
@@ -328,79 +371,114 @@
     </div>
   </div>
 
-  <!-- PAGE 2 -->
-  <div class="portfolio-container" id="page2" style="display:none;">
-    <div class="site-title">MyPortfolio</div>
-    <nav class="top-right-nav">
-      <a href="#" data-page="1">Home</a>
-      <a href="#" class="active" data-page="2">Education</a>
-      <a href="#" data-page="3">Achievements</a>
+<!-- PAGE 2 -->
+<div class="portfolio-container" id="page2" style="display:none;">
+  <div class="site-title">MyPortfolio</div>
+  <nav class="top-right-nav">
+    <a href="#" data-page="1">Home</a>
+    <a href="#" class="active" data-page="2">Education</a>
+    <a href="#" data-page="3">Achievements</a>
+  </nav>
+
+  <div class="content-left">
+    <header class="header">
+      <h1 class="name">Arthur Rey Cava</h1>
+      <p class="title">Educational Attainment</p>
+    </header>
+
+    <nav class="tabs">
+      <button class="tab active" data-index="0">College (2025-present)</button>
+      <button class="tab" data-index="1">Senior High School (2023-2025)</button>        
+      <button class="tab" data-index="2">High School (2019-2023)</button>
+      <button class="tab" data-index="3">Elementary (2014-2019)</button>
+      <button class="tab" data-index="4">Kindergarten (2013-2014)</button>
     </nav>
 
-    <div class="content-left">
-      <header class="header">
-        <h1 class="name">Arthur Rey Cava</h1>
-        <p class="title">Educational Attainment</p>
-      </header>
-
-      <nav class="tabs">
-        <button class="tab active" data-index="0">College (2025-present)</button>
-        <button class="tab active" data-index="1">Senior High School (2023-2025)</button>        
-        <button class="tab" data-index="2">High School (2019-2023)</button>
-        <button class="tab" data-index="3">Elementary (2014-2019)</button>
-        <button class="tab" data-index="4">Kindergarden (2013-2014)</button>
-      </nav>
-
-      <div class="content-slider">
-        <div class="slides">
-
-  <div class="slide">
-    <img src="IMG_8743.jpeg" alt="UC Logo">
-    <span>I am currently a first-year college student at the University of the Cordilleras, pursuing a Bachelor of Science in Information Technology with a major in Network and Security.</span>
+<div class="content-slider">
+  <div class="slides">
+    <p class="slide">
+      <img src="IMG_8743.jpeg" alt="University Logo" style="width:250px; border-radius:12px; box-shadow:0 0 10px rgba(0,0,0,0.3);">
+      🎓 Currently embarking on my college journey at the University of the Cordilleras, pursuing a Bachelor of Science in Information Technology with a focus on Network and Security. Excited to dive into the world of tech and cybersecurity!
+    </p>
+    <p class="slide">
+      <img src="IMG_8742.jpeg" alt="High School Logo" style="width:250px; border-radius:12px; box-shadow:0 0 10px rgba(0,0,0,0.3);">
+      🏫 Proud graduate of Senior High School at Gov. Manuel D. Barretto National High School, where I honed my skills and prepared for the next big step in my education.
+    </p>
+    <p class="slide">
+      <img src="IMG_8742.jpeg" alt="High School Logo" style="width:250px; border-radius:12px; box-shadow:0 0 10px rgba(0,0,0,0.3);">
+      🎓 Completed my High School journey at Gov. Manuel D. Barretto National High School — a foundation that shaped my academic growth and personal development.
+    </p>
+    <p class="slide">
+      <img src="IMG_8741.jpeg" alt="Elementary Logo" style="width:250px; border-radius:12px; box-shadow:0 0 10px rgba(0,0,0,0.3);">
+      🏫 Completed elementary education at Maloma Community Elementary School, where curiosity and learning first sparked my love for knowledge.
+    </p>
+    <p class="slide">
+      <img src="IMG_8741.jpeg" alt="Elementary Logo" style="width:250px; border-radius:12px; box-shadow:0 0 10px rgba(0,0,0,0.3);">
+      🌟 Started my educational journey in Kindergarten at Maloma Community Elementary School — the first step of a lifelong adventure in learning!
+    </p>
   </div>
-
-  <div class="slide">
-    <img src="IMG_8742.jpeg" alt="GMBNHS Logo">
-    <span>I graduated Senior High School at Gov. Manuel D. Barretto National High School.</span>
-  </div>
-
-  <div class="slide">
-    <img src="IMG_8742.jpeg" alt="High School Logo">
-    <span>I completed my High School at Gov. Manuel D. Barretto National High School.</span>
-  </div>
-
-  <div class="slide">
-    <img src="IMG_8741.jpeg" alt="Elementary Logo">
-    <span>I completed my elementary education at Maloma Community Elementary School.</span>
-  </div>
-
-  <div class="slide">
-    <img src="IMG_8741.jpeg" alt="Kindergarten Logo">
-    <span>I completed my Kindergarten education at Maloma Community Elementary School.</span>
-  </div>
-
 </div>
 
 
-      <div class="page-buttons" style="justify-content: space-between;">
-        <div class="page-button" id="prev2">← Previous</div>
-        <div class="page-button" id="next2">Next →</div>
-      </div>
+    <div class="page-buttons" style="justify-content: space-between;">
+      <div class="page-button" id="prev2">← Previous</div>
+      <div class="page-button" id="next2">Next →</div>
     </div>
   </div>
+</div>
 
-  <!-- PAGE 3 (Blank) -->
-  <div class="portfolio-container" id="page3" style="display:none;">
-    <div class="site-title">MyPortfolio</div>
-    <nav class="top-right-nav">
-      <a href="#" data-page="1">Home</a>
-      <a href="#" data-page="2">Education</a>
-      <a href="#" class="active" data-page="3">Achievements</a>
+
+<!-- PAGE 3 -->
+<div class="portfolio-container" id="page3" style="display:none;">
+  <div class="site-title">MyPortfolio</div>
+  <nav class="top-right-nav">
+    <a href="#" data-page="1">Home</a>
+    <a href="#" data-page="2">Education</a>
+    <a href="#" class="active" data-page="3">Achievements</a>
+  </nav>
+
+  <div class="content-left">
+    <header class="header">
+      <p class="title">Achievements</p>
+    </header>
+
+    <nav class="tabs">
+      <button class="tab active" data-index="0">Senior High School Graduate(2025)</button>
+      <button class="tab" data-index="1">Work Immersion(2025)</button>
+      <button class="tab" data-index="2">DSPC Qualifier (2024&2025)</button>
+      <button class="tab" data-index="3">Billiards Zonal 1st Place(2025)</button>
+      <button class="tab" data-index="4">With Honors</button>
     </nav>
-    <div class="content-left">
-      <div class="page-buttons">
-        <div class="page-button" id="prev3">← Previous</div>
-      </div>
+
+<div class="content-slider">
+  <div class="slides">
+    <p class="slide">
+      <img src="SHS Grad.jpeg" alt="Achievement 1" style="width:650px; border-radius:12px; box-shadow:0 0 10px rgba(0,0,0,0.3);">
+      🎓 Proudly graduated with 6 Sparkling medals across academics, co-curricular, and sports! Highlights include Graduating Medals, Outstanding Performance in Communication Arts (Filipino), Outstanding Performance in TVL ICT, 4th Place in MFOT Sineliksik, Zonal Meet Qualifier in Billiards, and DSPC Qualifier. A journey of dedication and excellence!
+    </p>
+    <p class="slide">
+      <img src="Work immersion.jpeg" alt="Achievement 2" style="width:650px; box-shadow:0 0 10px rgba(0,0,0,0.3);">
+      🏛️ Earned a Certification of Completion for my Work Immersion at the Municipal Government of San Felipe, Zambales — diving into real-world experience and learning the ropes of public service firsthand.
+    </p>
+    <p class="slide">
+      <img src="Dspc.jpg" alt="Achievement 3" style="width:650px; border-radius:12px; box-shadow:0 0 10px rgba(0,0,0,0.3);">
+      📰 Division Press Conference Qualifier for two consecutive years (2024 and 2025)! Improving my Layout and designing skills while competing at a high level, year after year.
+    </p>
+    <p class="slide">
+      <img src="Billiards.jpg" alt="Achievement 4" style="width:350px; border-radius:12px; box-shadow:0 0 10px rgba(0,0,0,0.3);">
+      🎱 Billiards powerhouse! From Intramurals Champion to Division Champion, and finally clinching 1st Place at the Zonal level in 2025 — precision, focus, and a lot of practice paid off.
+    </p>
+    <p class="slide">
+      <img src="SHSH.jpg" alt="Achievement 5" style="width:750px; border-radius:12px; box-shadow:0 0 10px rgba(0,0,0,0.3);">
+      🏅 Graduated High School and Senior High School with Honors and Perfect Attendance — a testament to commitment, perseverance, and a love for learning.
+    </p>
+  </div>
+</div>
+
+
+
+    <div class="page-buttons" style="justify-content: flex-start;">
+      <div class="page-button" id="prev3">← Previous</div>
     </div>
   </div>
 
@@ -410,35 +488,51 @@
       2: document.getElementById('page2'),
       3: document.getElementById('page3')
     };
+    function showPage(pageNum) {
+  // Hide all pages
+  Object.values(pages).forEach(p => p.style.display = 'none');
+  
+  // Show the target page
+  pages[pageNum].style.display = 'flex';
 
-    // Top-right nav click
-    document.querySelectorAll('.top-right-nav a').forEach(link => {
-      link.addEventListener('click', e => {
-        e.preventDefault();
-        const pageNum = link.getAttribute('data-page');
-        Object.values(pages).forEach(p => p.style.display='none');
-        pages[pageNum].style.display='flex';
-        document.querySelectorAll('.top-right-nav a').forEach(a => a.classList.remove('active'));
-        document.querySelectorAll(`.top-right-nav a[data-page="${pageNum}"]`).forEach(a => a.classList.add('active'));
-      });
-    });
+  // Update top-right nav active underline
+  document.querySelectorAll('.top-right-nav a').forEach(a => a.classList.remove('active'));
+  document.querySelectorAll(`.top-right-nav a[data-page="${pageNum}"]`).forEach(a => a.classList.add('active'));
+
+  // Optional: handle body class if you want special styling for page2
+  if(pageNum == 2){
+    document.body.classList.add('page2-active');
+  } else {
+    document.body.classList.remove('page2-active');
+  }
+}
+
+
+document.querySelectorAll('.top-right-nav a').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const pageNum = link.getAttribute('data-page');
+    showPage(pageNum);
+
+    // BODY CLASS FOR TOP ALIGN
+    if(pageNum == "2"){
+      document.body.classList.add('page2-active');
+    } else {
+      document.body.classList.remove('page2-active');
+    }
+
+    document.querySelectorAll('.top-right-nav a').forEach(a => a.classList.remove('active'));
+    document.querySelectorAll(`.top-right-nav a[data-page="${pageNum}"]`).forEach(a => a.classList.add('active'));
+  });
+});
+
 
     // Page buttons
-    document.getElementById('next1').addEventListener('click', () => {
-      pages[1].style.display='none'; pages[2].style.display='flex';
-    });
+document.getElementById('next1').addEventListener('click', () => showPage(2));
+document.getElementById('prev2').addEventListener('click', () => showPage(1));
+document.getElementById('next2').addEventListener('click', () => showPage(3));
+document.getElementById('prev3').addEventListener('click', () => showPage(2));
 
-    document.getElementById('prev2').addEventListener('click', () => {
-      pages[2].style.display='none'; pages[1].style.display='flex';
-    });
-
-    document.getElementById('next2').addEventListener('click', () => {
-      pages[2].style.display='none'; pages[3].style.display='flex';
-    });
-
-    document.getElementById('prev3').addEventListener('click', () => {
-      pages[3].style.display='none'; pages[2].style.display='flex';
-    });
 
     // Tabs slide logic page1
     const tabsPage1 = pages[1].querySelectorAll('.tab');
@@ -461,17 +555,20 @@
         slidesPage2.style.transform = `translateX(-${i*20}%)`;
       });
     });
+    // Tabs slide logic page 3
+const tabsPage3 = pages[3].querySelectorAll('.tab');
+const slidesPage3 = pages[3].querySelector('.slides');
+tabsPage3.forEach((tab,i) => {
+  tab.addEventListener('click', () => {
+    tabsPage3.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected','false'); });
+    tab.classList.add('active'); tab.setAttribute('aria-selected','true');
+    slidesPage3.style.transform = `translateX(-${i*20}%)`;
+  });
+});
+
   </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
 
 
