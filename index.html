@@ -68,48 +68,141 @@
       color: #d0baff;
       border-bottom-color: #b788ff;
     }
+    
+.content-slider.grid .content-item img {
+  max-width: 140px; /* fits nicely in grid */
+}
 
-    .content-wrapper {
-      height: 100vh;
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      align-items: flex-start;
-      gap: 60px;
-      justify-content: center;
-      padding-top: 80px;
-      padding-bottom: 100px;
-      box-sizing: border-box;
-    }
+/* Full-width content wrapper */
+.content-wrapper {
+  display: flex;
+  justify-content: space-between; /* text left, photo right */
+  align-items: flex-start;
+  padding: 20px 40px; /* smaller padding, closer to sides */
+  width: 90%;
+  max-width: 100%; /* allow full width */
+  gap: 80px; /* more space between text and photo */
+  box-sizing: border-box;
+  margin-top: 80px;
+}
 
-    .content-left {
-      flex: 1 1 600px;
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-      padding-right: 20px;
-    }
+#page5 .content-wrapper {
+    display: flex;
+  justify-content: flex-start; /* align left-to-right */
+  align-items: flex-start;
+  gap: 60px;
+  padding: 40px;
+}
+
+#page5 .photo-container {
+  flex: 1;
+  max-width: 400px;
+  border-radius: 50%; /* circular like Page 1 */
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#page5 .photo-container img {
+  width: 300%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 50%; /* circular */
+}
+
+#page5 .content-left {
+  flex: 2;
+}
+/* Text section takes more space */
+.content-left {
+  flex: 3; /* 3/4 of the width */
+  min-width: 0;
+}
+
+/* Photo container takes less space but bigger image */
+.photo-container {
+  flex: 1; /* 1/4 of width */
+  max-width: 800px; /* allow bigger photo */
+  height: auto;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, #b788ff 20%, transparent 80%);
+  box-shadow: 0 0 30px 6px #b788ffcc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.photo-container img {
+  width: 300%;
+  height: auto;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid transparent;
+  filter: drop-shadow(0 0 6px #b788ffdd);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .content-wrapper {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 40px;
+    padding: 20px 30px;
+  }
+
+  .content-left {
+    width: 100%;
+    flex: none;
+  }
+
+  .photo-container {
+    max-width: 350px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .name {
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  .title {
+    font-size: 1.2rem;
+    text-align: center;
+  }
+}
+
+.content-left {
+  flex: 2; /* take 2/3 of the space */
+  min-width: 0; /* allow shrinking */
+}
 
     .header { margin-bottom: 30px; }
 
     .name {
-      font-size: 3.8rem;
+      font-size: 5.8rem;
       font-weight: 900;
       color: #e1dcff;
-      margin-bottom: auto;
+      margin-bottom: 0px;
       text-shadow: 0 0 10px #9882ffcc, 0 0 28px #a594ffcc;
       letter-spacing: -0.02em;
     }
 
     .title {
-      font-size: 1.9rem;
+      font-size: 2.9rem;
       font-weight: 700;
       color: #b7aeff;
-      margin-bottom: auto;
+      margin-bottom: 10px;
       text-shadow: 0 0 20px #b3aaffcc;
       font-family: monospace;
       letter-spacing: 0.05em;
     }
+    #page5 .name {
+  font-size: 2.9rem;
+}
+
 
     .content-slider {
       font-size: 0.9rem;
@@ -122,66 +215,90 @@
 
     .content-slider.grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(3, 1fr);  
       gap: 20px;
     }
+    #page1 .content-slider {
+  font-size: 1.4rem; /* only affects Page 1 paragraph */
+  
+}
+.photo-container {
+  flex: 1; /* take 1/3 of the space */
+  width: 100%; /* scale with flex */
+  max-width: 400px; /* limit max size */
+  height: auto;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, #b788ff 20%, transparent 80%);
+  box-shadow: 0 0 30px 6px #b788ffcc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 80px;
+  margin-left: 100px;
+}
 
-    .photo-container {
-      flex-shrink: 0;
-      width: 210px;
-      height: 120px;
-      border-radius: 50%;
-      box-shadow: 0 0 30px 6px #b788ffcc;
-      background: radial-gradient(circle at center, #b788ff 20%, transparent 80%);
-      margin-top: 18%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      filter: drop-shadow(0 0 10px #b788ffee);
-      user-select: none;
-    }
+.photo-container img {
+  width: 300%;
+  height: 600px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid transparent;
+  filter: drop-shadow(0 0 6px #b788ffdd);
+}
 
-    .photo-container img {
-      width: 600px;
-      height: 350px;
-      margin-left: 50px;
-      object-fit: cover;
-      border-radius: 50%;
-      border: 4px solid transparent;
-      background-color: #2a1a55;
-      filter: drop-shadow(0 0 6px #b788ffdd);
-      user-select: none;
-    }
+    .content-item img {
+  width: 100%;
+  max-width: 180px; /* smaller images */
+  height: auto;
+  border-radius: 12px;
+  margin-bottom: 10px;
+}
 
-    .page-buttons {
-      position: absolute;
-      bottom: 20px;
-      left: 20px;
-      right: 20px;
-      display: flex;
-      justify-content: space-between;
-    }
 
-    .page-button {
-      background: rgba(183,136,255,0.15);
-      color: #e1dcff;
-      border: 1px solid #b788ff;
-      border-radius: 12px;
-      padding: 10px 24px;
-      font-weight: 600;
-      font-size: 1rem;
-      letter-spacing: 0.5px;
-      user-select: none;
-      cursor: pointer;
-      transition: background 0.3s ease, transform 0.2s ease;
-    }
+.page-buttons {
+  position: absolute;
+  right: 20px;         /* moves the button group to the right side */
+  bottom: 80px;        /* keeps them near the bottom */
+  display: flex;
+  flex-direction: column;   /* stack buttons vertically */
+  gap: 0px;                /* space between buttons */
+}
+
+.page-button {
+  padding: 10px 20px;
+  background: #681cdbdd;
+  border-radius: 8px;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  width: 120px;        /* same button width */
+  margin-bottom: 10px;
+}
+
 
     .page-button:hover {
       background: rgba(183,136,255,0.3);
       transform: scale(1.05);
     }
 
-    @media (max-width:600px) {
+@media (max-width: 600px) {
+  .content-wrapper {
+    flex-direction: column;
+    padding-top: 80px;
+    padding-bottom: 40px;
+  }
+
+  .photo-container {
+    width: 140px;
+    height: 140px;
+    margin-top: 0;
+  }
+
+  .content-item img {
+    max-width: 140px;
+  }
+
   .name {
     font-size: 2rem;
     text-align: center;
@@ -191,25 +308,8 @@
     font-size: 1.2rem;
     text-align: center;
   }
-
-  nav.top-right-nav {
-    display: none; /* hides navbar if it doesn’t fit */
-  }
-
-  .photo-container img {
-    width: 220px;
-    height: 220px;
-    margin-left: 0;
-  }
-
-  .content-slider.grid {
-    grid-template-columns: 1fr; /* 1 column on small phones */
-  }
-
-  .content-wrapper {
-    padding-top: 120px;
-  }
 }
+
 
 
     .content-item {
@@ -235,13 +335,125 @@
 
     /* Specific smaller images for page 2 */
     #page2 .content-item img {
-      max-width: 150px;
+      max-width: 200px;
     }
 
     /* Larger image for the last item on page 3 */
     #page3 .content-item.grid-item:nth-child(5) img {
       max-width: 160px;
     }
+            #page5 .content-item img {
+      max-width: 750px;
+    }
+
+        #page3 .content-item img {
+      max-width: 350px;
+    }
+    /* PAGE 3 - 2x2 grid */
+#page3 .content-slider.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 columns */
+  grid-auto-rows: auto; /* automatic row height */
+  gap: 20px; /* spacing between images */
+}
+#page3 .content-item img {
+  width: 50%;
+  height: 200px; /* same height for all */
+  object-fit: cover;
+}
+/* PAGE 4 - Family images wider */
+#page4 .content-item img {
+  max-width: 300px;      /* increase from 180px or 140px */
+  width: 100%;           /* scale to container */
+  height: auto;          /* keep aspect ratio */
+  border-radius: 12px;
+  border: 3px solid #b788ff;
+  box-shadow: 0 0 20px #b788ffcc;
+  margin-bottom: 10px;
+}
+
+/* Top 3 images - grid */
+#page2 .top-images {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* Bottom 2 images - flex center */
+#page2 .bottom-images {
+  display: flex;
+  justify-content: center;  /* centers horizontally */
+  gap: 40px;               /* space between the two images */
+  margin-top: 20px;        /* space from top grid */
+}
+
+/* Image sizes */
+#page2 .bottom-images .content-item img,
+#page2 .top-images .content-item img {
+  max-width: 200px;        /* adjust size as needed */
+  height: auto;
+  border-radius: 12px;
+  border: 3px solid #b788ff;
+  box-shadow: 0 0 20px #b788ffcc;
+}
+
+/* Text styling */
+#page2 .content-item strong {
+  color: #b7aeff;
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-shadow: 0 0 10px #9882ffcc;
+}
+
+#page2 .content-item {
+  font-size: 1.1rem;
+  color: #d3d1ffdd;
+  line-height: 1.6;
+  text-align: center;
+}
+#page3 .content-item {
+  font-size: 1rem;
+  color: #d3d1ffdd;
+  line-height: 1.6;
+  text-align: center;
+}
+#page4 .content-item {
+  font-size: 1.3rem;
+  color: #d3d1ffdd;
+  line-height: 1.6;
+  text-align: center;
+}
+#page5 {
+  position: relative;
+  width: 100vw;
+  height: 100vh;       /* full viewport height */
+  overflow: hidden;
+  background: black;    /* fallback */
+}
+
+#page5 img.fullscreen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;   /* fills screen without stretching */
+  z-index: 0;          /* behind nav/buttons */
+}
+
+#page5 .content-wrapper {
+  display: none;       /* hide wrapper if not needed */
+}
+
+/* nav and buttons keep z-index higher */
+#page5 .top-right-nav,
+#page5 .page-buttons {
+  position: fixed;
+  z-index: 10;
+}
+
+
+
   </style>
 </head>
 
@@ -255,6 +467,7 @@
       <a href="#" data-page="2">Education</a>
       <a href="#" data-page="3">Achievements</a>
       <a href="#" data-page="4">My Family</a>
+      <a href="#" data-page="5">My Batchmates</a>
     </nav>
 
     <div class="content-wrapper">
@@ -283,23 +496,26 @@
     </div>
   </div>
 
-  <!-- PAGE 2 -->
-  <div class="page" id="page2">
-    <div class="site-title">MyPortfolio</div>
-    <nav class="top-right-nav">
-      <a href="#" data-page="1">Home</a>
-      <a href="#" class="active" data-page="2">Education</a>
-      <a href="#" data-page="3">Achievements</a>
-      <a href="#" data-page="4">My Family</a>
-    </nav>
+<!-- PAGE 2 -->
+<div class="page" id="page2">
+  <div class="site-title">MyPortfolio</div>
+  <nav class="top-right-nav">
+    <a href="#" data-page="1">Home</a>
+    <a href="#" class="active" data-page="2">Education</a>
+    <a href="#" data-page="3">Achievements</a>
+    <a href="#" data-page="4">My Family</a>
+    <a href="#" data-page="5">My Batchmates</a>
+  </nav>
 
-    <div class="content-wrapper">
-      <div class="content-left">
-        <header class="header">
-          <p class="title">Educational Attainment</p>
-        </header>
+  <div class="content-wrapper">
+    <div class="content-left">
+      <header class="header">
+        <p class="title">Educational Attainment</p>
+      </header>
 
-        <div class="content-slider grid">
+      <div class="content-slider">
+        <!-- Top 3 images in grid -->
+        <div class="top-images">
           <div class="content-item grid-item">
             <img src="IMG_8743.jpeg" alt="University Logo">
             <strong>College (2025-present):</strong><br>
@@ -315,6 +531,10 @@
             <strong>High School (2019-2023):</strong><br>
             Completed my High School journey at Gov. Manuel D. Barretto National High School — a foundation that shaped my academic growth and personal development.
           </div>
+        </div>
+
+        <!-- Bottom 2 images centered -->
+        <div class="bottom-images">
           <div class="content-item grid-item">
             <img src="IMG_8741.jpeg" alt="Elementary Logo">
             <strong>Elementary (2014-2019):</strong><br>
@@ -328,12 +548,14 @@
         </div>
       </div>
     </div>
-
-    <div class="page-buttons">
-      <div class="page-button" id="prev2">← Previous</div>
-      <div class="page-button" id="next2">Next →</div>
-    </div>
   </div>
+
+  <div class="page-buttons">
+    <div class="page-button" id="prev2">← Previous</div>
+    <div class="page-button" id="next2">Next →</div>
+  </div>
+</div>
+
 
   <!-- PAGE 3 -->
   <div class="page" id="page3">
@@ -343,6 +565,7 @@
       <a href="#" data-page="2">Education</a>
       <a href="#" class="active" data-page="3">Achievements</a>
       <a href="#" data-page="4">My Family</a>
+      <a href="#" data-page="5">My Batchamates</a>
     </nav>
 
     <div class="content-wrapper">
@@ -390,12 +613,12 @@
       <a href="#" data-page="2">Education</a>
       <a href="#" data-page="3">Achievements</a>
       <a href="#" class="active" data-page="4">My Family</a>
+      <a href="#" data-page="5">My Batchmates</a>
     </nav>
 
     <div class="content-wrapper">
       <div class="content-left">
         <header class="header">
-          <h1 class="name">Arthur Rey Cava</h1>
           <p class="title">My Family</p>
         </header>
 
@@ -412,26 +635,51 @@
           </div>
           <div class="content-item grid-item">
             <img src="3.png" alt="Family Member 3">
-            <strong>Sibling: Renz Cava, Reggie Cava, Ronnie Cava</strong><br>
+            <strong>Siblings: Renz Cava, Reggie Cava, Ronnie Cava</strong><br>
             My siblings are my best friend, turning ordinary days into fun adventures filled with jokes, chaos, and memories.
           </div>
         </div>
       </div>
     </div>
 
-    <div class="page-buttons">
-      <div class="page-button" id="prev4">← Previous</div>
-      <div></div> <!-- Placeholder for right side -->
-    </div>
+<div class="page-buttons">
+  <div class="page-button" id="prev4">← Previous</div>
+  <div class="page-button" id="next4" style="margin-left:auto;">Next →</div>
+</div>
+
   </div>
 
+<!-- PAGE 5 -->
+<div class="page" id="page5">
+  <img src="Batchmates4.png" alt="Batchmate Photo" class="fullscreen">
+
+  <div class="site-title">MyPortfolio</div>
+  <nav class="top-right-nav">
+    <a href="#" data-page="1">Home</a>
+    <a href="#" data-page="2">Education</a>
+    <a href="#" data-page="3">Achievements</a>
+    <a href="#" data-page="4">My Family</a>
+    <a href="#" class="active" data-page="5">My Batchmates</a>
+  </nav>
+
+  <div class="page-buttons">
+    <div class="page-button" onclick="showPage(4)">← Previous</div>
+  </div>
+</div>
+
+
+
   <script>
-    const pages = {
-      1: document.getElementById('page1'),
-      2: document.getElementById('page2'),
-      3: document.getElementById('page3'),
-      4: document.getElementById('page4')
-    };
+  const pages = {
+  1: document.getElementById('page1'),
+  2: document.getElementById('page2'),
+  3: document.getElementById('page3'),
+  4: document.getElementById('page4'),
+  5: document.getElementById('page5')
+};
+
+// Add navigation for Page 5
+document.getElementById('prev5')?.addEventListener('click', () => showPage(4));
 
     function showPage(pageNum) {
       // Hide all pages
@@ -445,21 +693,26 @@
       document.querySelectorAll(`.top-right-nav a[data-page="${pageNum}"]`).forEach(a => a.classList.add('active'));
     }
 
-    document.querySelectorAll('.top-right-nav a').forEach(link => {
-      link.addEventListener('click', e => {
-        e.preventDefault();
-        const pageNum = link.getAttribute('data-page');
-        showPage(pageNum);
-      });
-    });
+document.querySelectorAll('.top-right-nav a').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const pageNum = link.getAttribute('data-page');
+    showPage(pageNum);
+  });
+});
 
-    // Page buttons
-    document.getElementById('next1').addEventListener('click', () => showPage(2));
-    document.getElementById('prev2').addEventListener('click', () => showPage(1));
-    document.getElementById('next2').addEventListener('click', () => showPage(3));
-    document.getElementById('prev3').addEventListener('click', () => showPage(2));
-    document.getElementById('next3').addEventListener('click', () => showPage(4));
-    document.getElementById('prev4').addEventListener('click', () => showPage(3));
+
+// Page buttons event listeners
+document.getElementById('next1').addEventListener('click', () => showPage(2));
+document.getElementById('prev2').addEventListener('click', () => showPage(1));
+document.getElementById('next2').addEventListener('click', () => showPage(3));
+document.getElementById('prev3').addEventListener('click', () => showPage(2));
+document.getElementById('next3').addEventListener('click', () => showPage(4));
+document.getElementById('prev4').addEventListener('click', () => showPage(3));
+document.getElementById('next4').addEventListener('click', () => showPage(5));
+document.getElementById('prev5').addEventListener('click', () => showPage(4));
+
+
   </script>
 
 </body>
